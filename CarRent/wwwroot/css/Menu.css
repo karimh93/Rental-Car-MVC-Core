@@ -1,0 +1,23 @@
+﻿body {
+margin:0 auto;
+}
+
+
+.w3-container.w3-center {
+    background-image: url('../img/menubackground.jpg');
+    text-align: center;
+    color: white;
+    height:600px;
+}
+
+header.menu {
+    margin-bottom: 5%;
+}
+
+h3{
+    margin-bottom:3%;
+}
+
+a {
+    color: white;
+}
