@@ -7,6 +7,7 @@ namespace CarRent.Entities
     {
         public Roles()
         {
+            RolesPermissions = new HashSet<RolesPermissions>();
             Users = new HashSet<Users>();
         }
 
@@ -14,6 +15,7 @@ namespace CarRent.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public virtual ICollection<RolesPermissions> RolesPermissions { get; set; }
         public virtual ICollection<Users> Users { get; set; }
     }
 }

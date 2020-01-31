@@ -7,7 +7,6 @@ namespace CarRent.Entities
     {
         public Customers()
         {
-            CarRentRegister = new HashSet<CarRentRegister>();
             Reservations = new HashSet<Reservations>();
         }
 
@@ -16,7 +15,6 @@ namespace CarRent.Entities
         public DateTime BirthDate { get; set; }
         public string Location { get; set; }
 
-        public virtual ICollection<CarRentRegister> CarRentRegister { get; set; }
         public virtual ICollection<Reservations> Reservations { get; set; }
     }
 }

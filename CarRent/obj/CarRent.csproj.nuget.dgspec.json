@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karim\\Desktop\\OSF Academy\\Rental-Car-MVC-Core\\CarRent\\CarRent\\CarRent.csproj": {}
+    "C:\\Users\\karim\\Desktop\\OSF Academy\\CarRent\\CarRent\\CarRent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karim\\Desktop\\OSF Academy\\Rental-Car-MVC-Core\\CarRent\\CarRent\\CarRent.csproj": {
+    "C:\\Users\\karim\\Desktop\\OSF Academy\\CarRent\\CarRent\\CarRent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karim\\Desktop\\OSF Academy\\Rental-Car-MVC-Core\\CarRent\\CarRent\\CarRent.csproj",
+        "projectUniqueName": "C:\\Users\\karim\\Desktop\\OSF Academy\\CarRent\\CarRent\\CarRent.csproj",
         "projectName": "CarRent",
-        "projectPath": "C:\\Users\\karim\\Desktop\\OSF Academy\\Rental-Car-MVC-Core\\CarRent\\CarRent\\CarRent.csproj",
+        "projectPath": "C:\\Users\\karim\\Desktop\\OSF Academy\\CarRent\\CarRent\\CarRent.csproj",
         "packagesPath": "C:\\Users\\karim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karim\\Desktop\\OSF Academy\\Rental-Car-MVC-Core\\CarRent\\CarRent\\obj\\",
+        "outputPath": "C:\\Users\\karim\\Desktop\\OSF Academy\\CarRent\\CarRent\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -62,6 +66,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Microsoft.Web.SessionState.SqlInMemory": {
+              "target": "Package",
+              "version": "[1.0.2, )"
             },
             "ValueInjecter": {
               "target": "Package",

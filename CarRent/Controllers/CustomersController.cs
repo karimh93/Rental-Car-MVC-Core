@@ -9,11 +9,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Omu.ValueInjecter;
 
+
 namespace CarRent.Controllers
 {
     public class CustomersController : Controller
     {
-        private ICustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         public CustomersController(ICustomerRepository customerRepository)
         {
@@ -28,6 +29,7 @@ namespace CarRent.Controllers
             IEnumerable<Customers> allCustomers = _customerRepository.GetAllCustomers();
             return View(allCustomers);
         }
+
 
         // GET: Customers/Details/5
         public ActionResult Details(int id)

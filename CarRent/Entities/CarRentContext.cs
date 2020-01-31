@@ -23,12 +23,14 @@ namespace CarRent.Entities
         public virtual DbSet<ReservationStatuses> ReservationStatuses { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<RolesPermissions> RolesPermissions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CarR;Trusted_Connection=True;");
             }
         }
@@ -38,7 +40,7 @@ namespace CarRent.Entities
             modelBuilder.Entity<CarRentRegister>(entity =>
             {
                 entity.HasKey(e => e.CarRentId)
-                    .HasName("RolesPermissions_pk");
+                    .HasName("CarRentRegister_pk");
 
                 entity.Property(e => e.CarRentId).HasColumnName("CarRentID");
 
@@ -57,12 +59,6 @@ namespace CarRent.Entities
                 entity.Property(e => e.EndDate).HasColumnType("date");
 
                 entity.Property(e => e.StartDate).HasColumnType("date");
-
-                entity.HasOne(d => d.Client)
-                    .WithMany(p => p.CarRentRegister)
-                    .HasForeignKey(d => d.ClientId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CarRentReg__City__4222D4EF");
             });
 
             modelBuilder.Entity<Cars>(entity =>
@@ -228,6 +224,28 @@ namespace CarRent.Entities
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<RolesPermissions>(entity =>
+            {
+                entity.HasKey(e => new { e.RoleId, e.PermissionId })
+                    .HasName("RolesPermissions_pk");
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.Property(e => e.PermissionId).HasColumnName("PermissionID");
+
+                entity.HasOne(d => d.Permission)
+                    .WithMany(p => p.RolesPermissions)
+                    .HasForeignKey(d => d.PermissionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RolesPermissions_Permissions");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.RolesPermissions)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("ScreenPermissions_Roles");
             });
 
             modelBuilder.Entity<Users>(entity =>

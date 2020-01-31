@@ -8,12 +8,14 @@ using CarRent.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Omu.ValueInjecter;
+using Microsoft.Web.SessionState;
 
 namespace CarRent.Controllers
 {
     public class CarRentController : Controller
     {
         private readonly ICarRentRepository carRentRepository;
+
         public CarRentController(ICarRentRepository carRentRepository)
         {
             this.carRentRepository = carRentRepository;
@@ -34,11 +36,6 @@ namespace CarRent.Controllers
             CarRentRegister carRent = carRentRepository.GetCarRentById(id);
             CarRentModel model = new CarRentModel();
             model.InjectFrom(carRent);
-           
-            if (carRent == null)
-            {
-                return NotFound();
-            }
 
             return View(model);
         }
@@ -56,12 +53,12 @@ namespace CarRent.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 DateTime startDate = model.StartDate;
                 DateTime endDate = model.EndDate;
-                int clientID = model.ClientID;
 
-                if (startDate > endDate || clientID == 0)
+
+                if (startDate > endDate)
                 {
                     return RedirectToAction(nameof(Create));
                 }
@@ -70,12 +67,13 @@ namespace CarRent.Controllers
                     CarRentRegister carRentRegister = new CarRentRegister();
                     carRentRegister.InjectFrom(model);
                     var createCarRegister = carRentRepository.AddCarRent(carRentRegister);
-                    
+                    return RedirectToAction(nameof(Index));
+
                 }
             }
+
             return View(model);
         }
-
 
         // GET: CarRent/Edit/5
         public ActionResult Edit(int id)

@@ -53,6 +53,5 @@ namespace CarRent.Repositories
             carRentContext.CarRentRegister.Remove(carRentToDelete);
             carRentContext.SaveChanges();
         }
-
     }
 }
